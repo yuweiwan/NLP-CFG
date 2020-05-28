@@ -1,0 +1,208 @@
+
+# the grammar file completed:
+# (a) “a” vs. “an.”
+# (b) Yes-no questions.
+
+1 ROOT S .
+1 ROOT S !
+1 ROOT Q ?
+1 ROOT is it true that S ?
+2 S NP VP[trans]
+2 S NP VP[!trans]
+1 S NP V[trans] that S
+1 S it VP[trans] that S
+1 S that S VP[trans]
+1 Q Aux NP VP[trans][present]
+1 Q Aux NP VP[!trans][present]
+#####################################
+# Auxiliary verb
+#####################################
+1 Aux will
+1 Aux does
+1 Aux did
+#####################################
+# VP (default is simple past tense)
+#####################################
+10 VP[trans] V[trans][!NP] NP
+1 VP[trans] VP[trans] Conj VP[trans]
+10 VP[!trans] V[!trans][!PP]
+10 VP[!trans] V[!trans][!PP] PP
+1 VP[!trans] VP[!trans] Conj VP[!trans]
+10 V[trans][!NP] V[trans]
+1 V[trans][!NP] V[trans][!NP] Conj V[trans][!NP]
+10 V[!trans][!PP] V[!trans]
+1 V[!trans][!PP] V[!trans][!PP] Conj V[!trans][!PP]
+#####################################
+# VP with simple present tense
+#####################################
+10 VP[trans][present] V[trans][present][!NP] NP
+1 VP[trans][present] VP[trans][present] Conj VP[trans]
+[present]
+10 VP[!trans][present] V[!trans][present][!PP]
+10 VP[!trans][present] V[!trans][present][!PP] PP
+1 VP[!trans][present] VP[!trans][present] Conj VP[!
+trans][present]
+10 V[trans][present][!NP] V[trans][present]
+1 V[trans][present][!NP] V[trans][present][!NP] Conj
+V[trans][present][!NP]
+10 V[!trans][present][!PP] V[!trans][present]
+1 V[!trans][present][!PP] V[!trans][present][!PP] Conj V[!
+trans][present][!PP]
+#####################################
+# NP
+#####################################
+1 NP AP[very][det] N[det]
+1 NP AP[!very][det] N[det]
+1 NP Det[a] N[det][a]
+1 NP Det[an] N[det][an]
+1 NP AP[very][!det] N[!det]
+1 NP AP[!very][!det] N[!det]
+1 NP N[!det]
+1 NP NP Conj NP
+1 NP NP PP
+1 PP Prep NP
+#####################################
+# transitive verb
+#####################################
+1 V[trans] ate
+1 V[trans] wanted
+1 V[trans] kissed
+1 V[trans] understood
+1 V[trans] thought
+1 V[trans] perplexed
+#####################################
+# transitive verb (simple present tense)
+#####################################
+1 V[trans][present] eat
+1 V[trans][present] want
+1 V[trans][present] kiss
+1 V[trans][present] understand
+1 V[trans][present] think
+1 V[trans][present] perplex
+#####################################
+# intransitive verb
+#####################################
+1 V[!trans] sighed
+1 V[!trans] worked
+1 V[!trans] ran
+1 V[!trans] laughed
+1 V[!trans] clapped
+1 V[!trans] occurred
+#####################################
+# intransitive verb (simple present tense)
+#####################################
+1 V[!trans][present] sigh
+1 V[!trans][present] work
+1 V[!trans][present] run
+1 V[!trans][present] laugh
+1 V[!trans][present] clap
+1 V[!trans][present] occur
+#####################################
+# all noun
+#####################################
+1 N[det] N[det][an]
+1 N[det] N[det][a]
+#####################################
+# noun started with an
+#####################################
+1 N[det][an] apple
+1 N[det][an] eye
+1 N[det][an] umbrella
+1 N[det][an] elephant
+1 N[det][an] angle
+1 N[det][an] American
+1 N[det][an] island
+#####################################
+# noun started with a
+#####################################
+1 N[det][a] president
+1 N[det][a] sandwich
+1 N[det][a] pickle
+1 N[det][a] chief of staff
+1 N[det][a] floor
+1 N[det][a] desk
+1 N[det][a] proposal
+#####################################
+# noun started without a or an
+#####################################
+1 N[!det] Sally
+1 N[!det] advice
+1 N[!det] news
+1 N[!det] information
+1 N[!det] furniture
+1 N[!det] honesty
+1 N[!det] wealth
+#####################################
+# repeated adjective
+#####################################
+1 AP Adj[an]
+1 AP Adj[a]
+1 AP Adj[an] AP
+1 AP Adj[a] AP
+#####################################
+# Adjective without very
+# Adjective with determiner
+#####################################
+1 AP[!very][det] Det[an] Adj[an]
+1 AP[!very][det] Det[an] Adj[an] AP
+1 AP[!very][det] Det[a] Adj[a]
+1 AP[!very][det] Det[a] Adj[a] AP
+#####################################
+# Adjective without very or determiner
+#####################################
+10 AP[!very][!det] AP
+#####################################
+# Adjective with very and determiner
+#####################################
+1 AP[very][det] Det[a] AP[very][det][rpt] AP
+1 AP[very][det][rpt] very AP[very][det][rpt]
+1 AP[very][det][rpt] very
+#####################################
+# Adjective with very
+# Adjective without determiner
+#####################################
+1 AP[very][!det] AP[very][!det][rpt] AP
+1 AP[very][!det][rpt] very AP[very][!det][rpt]
+1 AP[very][!det][rpt] very
+#####################################
+# a / the /every
+#####################################
+1 Det[a] Det
+1 Det[a] a
+#####################################
+# an / the /every
+#####################################
+1 Det[an] Det
+10 Det[an] an
+#####################################
+# the /every
+#####################################
+1 Det the
+1 Det every
+#####################################
+# all adj
+#####################################
+1 Adj Adj[a]
+1 Adj Adj[an]
+#####################################
+# adj started with a
+#####################################
+1 Adj[a] fine
+1 Adj[a] delicious
+1 Adj[a] perplexed
+1 Adj[a] pickled
+#####################################
+# adj started with an
+#####################################
+1 Adj[an] ambivalent
+1 Adj[an] interesting
+1 Adj[an] active
+1 Adj[an] ordinary
+1 Adj[an] acceptable
+1 Adj[an] eventful
+1 Prep with
+1 Prep on
+1 Prep under
+1 Prep in
+1 Conj and
+1 Conj or

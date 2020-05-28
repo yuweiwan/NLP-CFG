@@ -1,0 +1,143 @@
+# Symbols in the grammar are case-sensitive.
+# 
+# This grammar uses a convention that
+#    - terminals are lowercase          (president)
+#    - preterminals are capitalized     (Noun)
+#    - other nonterminals are all-caps  (NP)
+# 
+# This convention just makes grammars more readable to humans.  Thus:
+#
+#    - When *you* are writing grammars in questions 3 and 6, you should 
+#      follow this convention unless you have a good reason not to.  
+#
+#    - But your *program* should still work with grammars that don't
+#      follow this convention.  So how can your program reliably tell
+#      the difference between terminal and nonterminal symbols?  If
+#      there is at least one rule for rewriting a symbol, then that
+#      symbol is a nonterminal and should be rewritten.
+#######################
+
+# Rules for creating full sentences.
+
+3	ROOT	S . #increase from 1 to 3
+1	ROOT	S !
+0.5	ROOT	is it true that S ? 
+1	ROOT	where did NP VP ?
+1	ROOT	what did NP V_t NP with ?
+1	ROOT	what did NP V_t ?
+1	ROOT	who did NP V_t with ?
+1	ROOT	who did NP V_t ?    
+
+# The basic grammar rules.  Here's what the abbreviations stand for:
+#    S  = sentence
+#    NP = noun phrase
+#    VP = verb phrase
+#    PP = prepositional phrase
+#    Det = determiner (sometimes called "article")
+#    Prep = preposition
+#    Adj = adjective
+#    C = clause
+
+2	S	NP VP
+0.5	S	S Conj S # Add rules of using conjunctions
+0.5	S	C V_t NP # Add rules of using clause
+1	S	it V_t NP C # Add rules of using clause
+1	S	NP V_t C # Add rules of using clause
+1	C	that S # Add clause
+1	C_r	that NP V_t # Add relative clause
+0.3	C_r	that NP V_t C_r
+1	C_r	that VP
+3	VP	V_t NP
+3	VP	V_i
+2	VP	V_i PP
+0.5	VP	VP Conj VP # Add rules of using conjunctions
+1	NP	NP C_r
+0.3	NP	NP Conj NP # Add rules of using conjunctions
+3	NP	Det Noun
+2	NP	an Noun_an
+0.3	NP	NP PP #decrease from 1 to 0.3
+1	PP	Prep NP
+3	Noun	Adj Noun #increase from 1 to 3
+1	Noun	Adj Noun_an
+1	Noun_an	Adj_an Noun
+
+# Vocabulary.  Your program can see that "ate" is a terminal
+# symbol because there exists no rule for rewriting it.
+# Any symbol that can rewrite as a terminal (or a string of 
+# terminals, like "chief of staff") is called a "preterminal."  Notice 
+# that a preterminal is a special kind of nonterminal.
+
+1	V_t	ate
+1	V_t	wanted
+1	V_t	kissed
+1	V_t	understood
+1	V_t	pickled
+1	V_t	thought
+1	V_t	perplexed
+
+1	V_i	wanted
+1	V_i	worked
+1	V_i	ate
+1	V_i	understood
+1	V_i	sighed
+
+2	Det	the 
+1	Det	a
+1	Det	every
+
+# Add some proper nouns
+0.3	NP	Sally
+0.3	NP	Tom
+1	Noun	president
+1	Noun	sandwich
+1	Noun	pickle
+1	Noun	chief of staff
+1	Noun	floor
+1	Noun	proposal
+1	Noun	desk
+# Add some nouns which should be used with an
+1	Noun_an	apple
+1	Noun_an	orange
+1	Noun_an	egg
+
+
+1	Adj	fine
+1	Adj	delicious
+1	Adj	perplexed
+1	Adj	pickled
+1	Adj	very # Add one Adj
+# Add Adjectives which should should be used with an
+1	Adj_an	amazing
+1	Adj_an	ambivalent
+
+1	Prep	with
+1	Prep	on
+1	Prep	under
+1	Prep	in
+# Add some fixed prepositional phrases
+1	PP	on the desk
+0.3	PP	over the rainbow
+0.3	NP	NP of the United States
+
+# Add some conjunctions
+2	Conj	and
+1	Conj	or
+
+
+1	V_m	may
+1	V_m	could
+1	V_m	can
+1	V_m	should
+1	V_m	would
+1	V_m	will 
+1	V_m	must
+1	V_mn	may not
+1	V_mn	couldn¡¯t
+1	V_mn	can¡¯t
+1	V_mn	shouldn¡¯t
+1	V_mn	wouldn¡¯t
+1	V_mn	wont 
+1	V_mn	mustn¡¯t
+
+1	VP	V_m VP
+1	VP	V_mn VP
